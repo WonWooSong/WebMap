@@ -16,7 +16,7 @@ def color_producer(elevation):
     else:
         return 'red'
 
-map = folium.Map(location=[38.58, -99.09], zoom_start=6, tiles="Stamen Terrain")
+map = folium.Map(location=[40.0, -120.0], zoom_start=6, tiles="Stamen Terrain")
 
 fg = folium.FeatureGroup(name="My Map")
 fg.add_child(folium.GeoJson(data=open('data/world.json', 'r', encoding='utf-8-sig').read()))
