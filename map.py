@@ -19,7 +19,9 @@ def color_producer(elevation):
 map = folium.Map(location=[40.0, -120.0], zoom_start=6, tiles="Stamen Terrain")
 
 fg = folium.FeatureGroup(name="My Map")
-fg.add_child(folium.GeoJson(data=open('data/world.json', 'r', encoding='utf-8-sig').read()))
+fg.add_child(folium.GeoJson(data=open('data/world.json', 'r', encoding='utf-8-sig').read(), 
+style_function=lambda x: {'fillColor':'green' if x['properties']['POP2005'] < 25000000
+else 'orange' if 25000000 <= x['properties']['POP2005'] < 55000000 else 'red'}))
 
 for lat,lon,elev,name in zip(lat,lon,elevation,name):
     fg.add_child(folium.CircleMarker(location=[lat,lon], popup=folium.Popup(str(name), parse_html=True), radius = 10,
